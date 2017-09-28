@@ -1,6 +1,8 @@
 package com.abtswiath;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Button;
@@ -14,10 +16,14 @@ import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Method;
+
+import static android.os.SystemProperties.VERSION_CODE;
 
 public class MainActivity extends BaseActivity {
 
     private Button button1, button2;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,10 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         button1 = (Button) this.findViewById(R.id.button1);
         button2 = (Button) this.findViewById(R.id.button2);
+        String model = Build.MODEL;
+//PROP
+        Log.e(TAG, "onCreate: "+model+"-----"+getSN()+"--------"+ android.os.SystemProperties.get("gsm.serial2")+android.os.SystemProperties.get("ro.sunmi.devicecode"));
+        
         final MyAsyncTask myAsyncTask = new MyAsyncTask() {
             @Override
             protected void onProgressUpdate(String... values) {
@@ -70,4 +80,48 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+
+
+    /**
+     * 获取机器MSN码(完整)
+     *
+     * @return
+     */
+    public  String getSN() {
+        String serial = null;
+        try {
+            Class<?> c = Class.forName("android.os.SystemProperties");
+            Method get = c.getMethod("get", String.class);
+            serial = (String) get.invoke(c, "ro.serialno");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return serial;
+    }
+
+    /**
+     * 获取机器MSN码(完整)
+     *
+     * @return
+     */
+    public  String getSN2() {
+        String serial = null;
+        try {
+            Class<?> c = Class.forName("android.os.SystemProperties");
+            Method get = c.getMethod("get", String.class);
+            serial = (String) get.invoke(c, "gsm.serial1");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (serial == null) {
+            return "";
+        }
+        if (serial.length() > 16) {
+            serial = serial.substring(0, 15);
+        }
+
+        return serial;
+    }
+
 }
