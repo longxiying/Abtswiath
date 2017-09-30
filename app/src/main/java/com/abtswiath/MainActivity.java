@@ -1,10 +1,11 @@
 package com.abtswiath;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.Button;
 
 import com.abtswiath.base.BaseActivity;
@@ -12,13 +13,9 @@ import com.abtswiath.bean.User;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FilterOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Method;
-
-import static android.os.SystemProperties.VERSION_CODE;
 
 public class MainActivity extends BaseActivity {
 
@@ -28,6 +25,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupWindowAnimations();
         setContentView(R.layout.activity_main);
         button1 = (Button) this.findViewById(R.id.button1);
         button2 = (Button) this.findViewById(R.id.button2);
@@ -79,8 +77,21 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+        this.findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,TransitionActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
+    private void setupWindowAnimations() {
+        Explode explode = new Explode();
+        explode.setDuration(2000);
+        getWindow().setExitTransition(explode);
+    }
 
     /**
      * 获取机器MSN码(完整)
