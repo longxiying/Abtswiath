@@ -2,6 +2,7 @@ package com.abtswiath.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -42,7 +43,17 @@ public class View1 extends BaseView {
         canvas.drawText("囖龍齉龘靐蠿", 5, 90, mPaint);
 
 
-        canvas.drawRect(5,100,width,200,mPaint);
+        canvas.drawRect(5, 100, width, 200, mPaint);
+
+
+        canvas.translate(getWidth() / 2, getHeight() / 2);  // 移动坐标系到屏幕中心(宽高数据在onSizeChanged中获取)
+
+        Path path = new Path();                     // 创建Path
+
+        path.lineTo(200, 200);                      // lineTo
+        path.lineTo(200, 0);
+
+        canvas.drawPath(path, mPaint);              // 绘制Path
 
 
     }

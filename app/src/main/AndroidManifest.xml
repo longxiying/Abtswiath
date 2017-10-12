@@ -32,6 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TransitionActivity" />
+        <activity android:name=".Path1Activity"/>
     </application>
 
 </manifest>

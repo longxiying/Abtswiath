@@ -2,6 +2,7 @@ package com.abtswiath.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -32,11 +33,11 @@ public abstract class BaseView extends View {
         initPaint();
     }
 
-    private void initPaint() {
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(getResources().getColor(R.color.holo_blue_dark));       //设置画笔颜色
-        mPaint.setStyle(Paint.Style.FILL);  //设置画笔模式为填充
-        mPaint.setStrokeWidth(10f);         //设置画笔宽度为10px
+    protected void initPaint() {
+        mPaint = new Paint();                   // 创建画笔
+        mPaint.setColor(getResources().getColor(R.color.holo_blue_dark));           // 画笔颜色 - 黑色
+        mPaint.setStyle(Paint.Style.STROKE);    // 填充模式 - 描边
+        mPaint.setStrokeWidth(10);              // 边框宽度 - 10
     }
 
     @Override
