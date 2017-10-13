@@ -92,6 +92,13 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        this.findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,CobwebActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupWindowAnimations() {
