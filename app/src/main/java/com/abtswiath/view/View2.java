@@ -72,7 +72,16 @@ public class View2 extends BaseView {
             case 8:
                 path5(canvas);
                 break;
+            case 9:
+                path6(canvas);
+                break;
         }
+    }
+
+    private void path6(Canvas canvas) {
+        Path path = new Path();
+        path.quadTo(300, 100, 200, 400);
+        canvas.drawPath(path, mPaint);
     }
 
     private void path5(Canvas canvas) {
@@ -169,7 +178,7 @@ public class View2 extends BaseView {
     private int index = 0;
 
     public void change() {
-        if (index > 7) {
+        if (index > 8) {
             index = 0;
         } else {
             index++;

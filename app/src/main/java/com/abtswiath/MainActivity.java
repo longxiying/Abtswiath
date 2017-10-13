@@ -31,8 +31,8 @@ public class MainActivity extends BaseActivity {
         button2 = (Button) this.findViewById(R.id.button2);
         String model = Build.MODEL;
 //PROP
-        Log.e(TAG, "onCreate: "+model+"-----"+getSN()+"--------"+ android.os.SystemProperties.get("gsm.serial2")+android.os.SystemProperties.get("ro.sunmi.devicecode"));
-        
+        Log.e(TAG, "onCreate: " + model + "-----" + getSN() + "--------" + android.os.SystemProperties.get("gsm.serial2") + android.os.SystemProperties.get("ro.sunmi.devicecode"));
+
         final MyAsyncTask myAsyncTask = new MyAsyncTask() {
             @Override
             protected void onProgressUpdate(String... values) {
@@ -81,21 +81,28 @@ public class MainActivity extends BaseActivity {
         this.findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,TransitionActivity.class);
+                Intent intent = new Intent(MainActivity.this, TransitionActivity.class);
                 startActivity(intent);
             }
         });
         this.findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,Path1Activity.class);
+                Intent intent = new Intent(MainActivity.this, Path1Activity.class);
                 startActivity(intent);
             }
         });
         this.findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,CobwebActivity.class);
+                Intent intent = new Intent(MainActivity.this, CobwebActivity.class);
+                startActivity(intent);
+            }
+        });
+        this.findViewById(R.id.button11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BezierActivity.class);
                 startActivity(intent);
             }
         });
@@ -112,7 +119,7 @@ public class MainActivity extends BaseActivity {
      *
      * @return
      */
-    public  String getSN() {
+    public String getSN() {
         String serial = null;
         try {
             Class<?> c = Class.forName("android.os.SystemProperties");
@@ -130,7 +137,7 @@ public class MainActivity extends BaseActivity {
      *
      * @return
      */
-    public  String getSN2() {
+    public String getSN2() {
         String serial = null;
         try {
             Class<?> c = Class.forName("android.os.SystemProperties");

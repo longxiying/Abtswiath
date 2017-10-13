@@ -32,8 +32,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".TransitionActivity" />
-        <activity android:name=".Path1Activity"/>
-        <activity android:name=".CobwebActivity"/>
+        <activity android:name=".Path1Activity" />
+        <activity android:name=".CobwebActivity" />
+        <activity android:name=".BezierActivity" />
     </application>
 
 </manifest>
