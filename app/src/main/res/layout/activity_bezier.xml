@@ -11,6 +11,46 @@
         android:id="@+id/title"
         layout="@layout/layout_title" />
 
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="二阶曲线"
+            android:textColor="#111111" />
+
+        <RadioButton
+            android:id="@+id/rb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="三阶曲线"
+            android:textColor="#111111" />
+
+        <RadioButton
+            android:id="@+id/rb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="❤❤❤"
+            android:textColor="#111111" />
+
+    </RadioGroup>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#333333" />
+
     <com.abtswiath.view.bezier.Bezier
         android:id="@+id/bezier1"
         android:layout_width="match_parent"
@@ -54,11 +94,24 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#333333" />
+
         <com.abtswiath.view.bezier.Bezier2
             android:id="@+id/bezier2"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+
     </LinearLayout>
+
+    <com.abtswiath.view.bezier.Bezier3
+        android:id="@+id/bezier3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff" />
 
 
 </LinearLayout>
