@@ -58,11 +58,12 @@ public class HttpActivity extends BaseActivity implements View.OnClickListener {
                                 try {
                                     Log.e(TAG, "onResponse: "+response.body().string() );
                                     String json = response.body().string();
-                                    Gson gson = new Gson();
-                                    Type jsonType = new TypeToken<Result<Result1<City>>>() {
-                                    }.getType();
-                                    Result<Result1<City>> result = gson.fromJson(json, jsonType);
-                                    Log.e(TAG, "onResponse: "+result.toString());
+                                    button.setText(json);
+//                                    Gson gson = new Gson();
+//                                    Type jsonType = new TypeToken<Result<Result1<City>>>() {
+//                                    }.getType();
+//                                    Result<Result1<City>> result = gson.fromJson(json, jsonType);
+//                                    Log.e(TAG, "onResponse: "+result.toString());
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
