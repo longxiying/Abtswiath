@@ -12,6 +12,7 @@ import com.abtswiath.base.BaseActivity;
 import com.abtswiath.view.bezier.Bezier;
 import com.abtswiath.view.bezier.Bezier2;
 import com.abtswiath.view.bezier.Bezier3;
+import com.abtswiath.view.bezier.Bezier4;
 
 /**
  * Created by longx on 2017/10/13.
@@ -22,6 +23,7 @@ public class BezierActivity extends BaseActivity implements RadioGroup.OnChecked
     private Bezier bezier1;
     private Bezier2 bezier2;
     private Bezier3 bezier3;
+    private Bezier4 bezier4;
     private TextView one, two;
     private LinearLayout linearLayoutBezier2;
     private RadioGroup radioGroup;
@@ -32,6 +34,7 @@ public class BezierActivity extends BaseActivity implements RadioGroup.OnChecked
         setContentView(R.layout.activity_bezier);
         bezier2 = (Bezier2) this.findViewById(R.id.bezier2);
         bezier3 = (Bezier3) this.findViewById(R.id.bezier3);
+        bezier4 = (Bezier4) this.findViewById(R.id.bezier4);
         one = (TextView) this.findViewById(R.id.one);
         two = (TextView) this.findViewById(R.id.two);
         bezier1 = (Bezier) this.findViewById(R.id.bezier1);
@@ -62,16 +65,26 @@ public class BezierActivity extends BaseActivity implements RadioGroup.OnChecked
                 bezier1.setVisibility(View.VISIBLE);
                 linearLayoutBezier2.setVisibility(View.GONE);
                 bezier3.setVisibility(View.GONE);
+                bezier4.setVisibility(View.GONE);
                 break;
             case R.id.rb2:
                 linearLayoutBezier2.setVisibility(View.VISIBLE);
                 bezier1.setVisibility(View.GONE);
                 bezier3.setVisibility(View.GONE);
+                bezier4.setVisibility(View.GONE);
                 break;
             case R.id.rb3:
                 linearLayoutBezier2.setVisibility(View.GONE);
                 bezier1.setVisibility(View.GONE);
                 bezier3.setVisibility(View.VISIBLE);
+                bezier4.setVisibility(View.GONE);
+                break;
+            case R.id.rb4:
+                linearLayoutBezier2.setVisibility(View.GONE);
+                bezier1.setVisibility(View.GONE);
+                bezier3.setVisibility(View.GONE);
+                bezier4.setVisibility(View.VISIBLE);
+                bezier4.startAnimation();
                 break;
         }
     }

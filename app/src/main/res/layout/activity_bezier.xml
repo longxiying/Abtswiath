@@ -43,6 +43,14 @@
             android:text="❤❤❤"
             android:textColor="#111111" />
 
+        <RadioButton
+            android:id="@+id/rb4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MagicCircle"
+            android:textColor="#111111" />
+
     </RadioGroup>
 
 
@@ -109,6 +117,12 @@
 
     <com.abtswiath.view.bezier.Bezier3
         android:id="@+id/bezier3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff" />
+
+    <com.abtswiath.view.bezier.Bezier4
+        android:id="@+id/bezier4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff" />
