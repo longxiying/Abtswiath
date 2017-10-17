@@ -36,6 +36,7 @@
         <activity android:name=".Path1Activity" />
         <activity android:name=".CobwebActivity" />
         <activity android:name=".BezierActivity" />
+        <activity android:name=".HttpActivity"/>
     </application>
 
 </manifest>

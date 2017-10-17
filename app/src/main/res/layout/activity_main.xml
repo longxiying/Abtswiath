@@ -85,7 +85,7 @@
                 android:layout_below="@id/layout_title"
                 android:background="#EED5D2"
                 android:gravity="center"
-                android:text="Button" />
+                android:text="http" />
 
             <Button
                 android:id="@+id/button14"
