@@ -1,6 +1,8 @@
 package com.abtswiath;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 
@@ -31,11 +33,22 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button6:
-                i++;
-                button.setText(i+"");
-                myViewProgress.setProgress(i);
-                myViewProgress.setLineW(6);
+                handler.sendEmptyMessageDelayed(0, 500);
                 break;
         }
     }
+
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            i++;
+            button.setText(i + "");
+            myViewProgress.setProgress(i);
+            myViewProgress.setLineW(6);
+            handler.sendEmptyMessageDelayed(0, 500);
+        }
+    };
+
+
 }

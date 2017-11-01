@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.transition.Explode;
 import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.abtswiath.base.BaseActivity;
 import com.abtswiath.bean.User;
