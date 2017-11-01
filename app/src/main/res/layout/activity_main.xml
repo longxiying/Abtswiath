@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8A2BE2"
+    android:id="@+id/main"
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
@@ -16,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
+        android:scrollbars="none"
         android:padding="10dp">
 
         <LinearLayout
@@ -23,146 +25,200 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="Button" />
+                app:edgeColor="@color/violet"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="Button"
+                app:textColor="@color/darkgreen"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓" />
+                app:edgeColor="@color/lightblue"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"
+                app:textColor="@color/crimson"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="初步" />
+                app:edgeColor="@color/gold"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="初步"
+                app:textColor="@color/fuchsia"
+                app:textSize="13sp" />
 
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="Path" />
+                app:edgeColor="@color/mediumorchid"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="Path"
+                app:textColor="@color/darkturquoise"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="蜘蛛网" />
+                app:edgeColor="@color/lightcoral"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="蜘蛛网"
+                app:textColor="@color/darkgoldenrod"
+                app:textSize="13sp" />
 
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button11"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="贝塞尔曲线" />
+                app:edgeColor="@color/lightsteelblue"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="贝塞尔曲线"
+                app:textColor="@color/mediumpurple"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button12"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="http" />
+                app:edgeColor="@color/mediumorchid"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="http"
+                app:textColor="@color/darkturquoise"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button14"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="进度条" />
+                app:edgeColor="@color/orangered"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="进度条"
+                app:textColor="@color/mintcream"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button15"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="Button" />
+                app:edgeColor="@color/mediumorchid"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="圆角布局"
+                app:textColor="@color/sienna"
+                app:textSize="13sp" />
 
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button10"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="Button" />
+                app:edgeColor="@color/hotpink"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="Button"
+                app:textColor="@color/burlywood"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button17"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="Button" />
+                app:edgeColor="@color/mediumorchid"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="Button"
+                app:textColor="@color/darkturquoise"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button18"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="Button" />
+                app:edgeColor="@color/holo_blue_dark"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="Button"
+                app:textColor="@color/navy"
+                app:textSize="13sp" />
 
-            <Button
+            <com.abtswiath.view.MyButton
                 android:id="@+id/button19"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_below="@id/layout_title"
                 android:layout_marginBottom="6dp"
-                android:background="@drawable/btn_bg"
                 android:gravity="center"
-                android:text="Button" />
+                app:edgeColor="@color/antiquewhite"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="Button"
+                app:textColor="@color/darkturquoise"
+                app:textSize="13sp" />
 
             <com.abtswiath.view.MyButton
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
-                app:edgeColor="@color/holo_blue_dark"
-                app:text="asd"
-                app:textColor="@color/colorAccent"
-                app:textSize="16sp" />
+                app:edgeColor="@color/darkturquoise"
+                app:radius="8dp"
+                app:strokeWidth="2dp"
+                app:text="龍龍龍龍"
+                app:textColor="@color/red"
+                app:textSize="19sp" />
 
 
         </LinearLayout>

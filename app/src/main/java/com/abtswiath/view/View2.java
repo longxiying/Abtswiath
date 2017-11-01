@@ -163,6 +163,7 @@ public class View2 extends BaseView {
 
     private void pathLine(Canvas canvas) {
         Path path = new Path();
+        mPaint.setColor(MyButton.getColor());
         while (i < 300) {
             path.moveTo(0, i);
             path.lineTo(i, 0);

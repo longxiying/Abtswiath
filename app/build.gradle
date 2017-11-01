@@ -27,4 +27,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'com.gcssloop.widget:rclayout:1.4.1@aar'
 }

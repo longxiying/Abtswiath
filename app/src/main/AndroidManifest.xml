@@ -38,6 +38,7 @@
         <activity android:name=".BezierActivity" />
         <activity android:name=".HttpActivity"/>
         <activity android:name=".ProgressActivity"/>
+        <activity android:name=".RCLayoutActivity"/>
     </application>
 
 </manifest>

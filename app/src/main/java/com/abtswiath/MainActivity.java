@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.transition.Explode;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.abtswiath.base.BaseActivity;
 import com.abtswiath.bean.User;
+import com.abtswiath.view.MyButton;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,7 +20,7 @@ import java.lang.reflect.Method;
 
 public class MainActivity extends BaseActivity {
 
-    private Button button1, button2;
+    private MyButton button1, button2;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -27,8 +28,11 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setupWindowAnimations();
         setContentView(R.layout.activity_main);
-        button1 = (Button) this.findViewById(R.id.button1);
-        button2 = (Button) this.findViewById(R.id.button2);
+        int bg = MyButton.getColor();
+        this.findViewById(R.id.layout_title).setBackgroundColor(bg);
+        this.findViewById(R.id.main).setBackgroundColor(bg);
+        button1 = (MyButton) this.findViewById(R.id.button1);
+        button2 = (MyButton) this.findViewById(R.id.button2);
         String model = Build.MODEL;
 //PROP
         Log.e(TAG, "onCreate: " + model + "-----" + getSN() + "--------" + android.os.SystemProperties.get("gsm.serial2") + android.os.SystemProperties.get("ro.sunmi.devicecode"));
@@ -118,6 +122,19 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
                 startActivity(intent);
+            }
+        });
+        this.findViewById(R.id.button15).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RCLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
+        this.findViewById(R.id.tv_title).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCreate(null);
             }
         });
     }

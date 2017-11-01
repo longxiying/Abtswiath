@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.abtswiath.R;
+
+import java.util.Random;
 
 /**
  * Created by longx on 2017/10/26.
@@ -16,38 +20,193 @@ import com.abtswiath.R;
 
 public class MyButton extends View {
 
-    private Paint mPaint;
+    private Paint mPaint, mTextPaint;
     private int textColor;
     private float textSize;
     private int degeColor;
     private String text;
+    private float strokeWidth;
+    private float radius;
 
-    public MyButton(Context context) {
-        super(context);
-        mPaint = new Paint();
-    }
+
+    private static int colors[] = new int[]{0XFFFFFFFF, 0XFFFFFFF0, 0XFFFFFFE0, 0XFFFFFF00
+            , 0XFFFFFAFA, 0XFFFFFAF0, 0XFFFFFACD, 0XFFFFF8DC
+            , 0XFFFFF68F, 0XFFFFF5EE, 0XFFFFF0F5, 0XFFFFEFDB
+            , 0XFFFFEFD5, 0XFFFFEC8B, 0XFFFFEBCD, 0XFFFFE7BA
+            , 0XFFFFE4E1, 0XFFFFE4C4, 0XFFFFE4B5, 0XFFFFE1FF
+            , 0XFFFFDEAD, 0XFFFFDAB9, 0XFFFFD700, 0XFFFFD39B
+            , 0XFFFFC1C1, 0XFFFFC125, 0XFFFFC0CB, 0XFFFFBBFF
+            , 0XFFFFB90F, 0XFFFFB6C1, 0XFFFFB5C5, 0XFFFFAEB9
+            , 0XFFFFA54F, 0XFFFFA500, 0XFFFFA07A, 0XFFFF8C69
+            , 0XFFFF8C00, 0XFFFF83FA, 0XFFFF82AB, 0XFFFF8247
+            , 0XFFFF7F50, 0XFFFF7F24, 0XFFFF7F00, 0XFFFF7256
+            , 0XFFFF6EB4, 0XFFFF6A6A, 0XFFFF69B4, 0XFFFF6347
+            , 0XFFFF4500, 0XFFFF4040, 0XFFFF3E96, 0XFFFF34B3
+            , 0XFFFF3030, 0XFFFF1493, 0XFFFF00FF, 0XFFFF0000
+            , 0XFFFDF5E6, 0XFFFCFCFC, 0XFFFAFAFA, 0XFFFAFAD2
+            , 0XFFFAF0E6, 0XFFFAEBD7, 0XFFFA8072, 0XFFF8F8FF
+            , 0XFFF7F7F7, 0XFFF5FFFA, 0XFFF5F5F5, 0XFFF5F5DC
+            , 0XFFF5DEB3, 0XFFF4F4F4, 0XFFF4A460, 0XFFF2F2F2
+            , 0XFFF0FFFF, 0XFFF0FFF0, 0XFFF0F8FF, 0XFFF0F0F0
+            , 0XFFF0E68C, 0XFFF08080, 0XFFEEEEE0, 0XFFEEEED1
+            , 0XFFEEEE00, 0XFFEEE9E9, 0XFFEEE9BF, 0XFFEEE8CD
+            , 0XFFEEE8AA, 0XFFEEE685, 0XFFEEE5DE, 0XFFEEE0E5
+            , 0XFFEEDFCC, 0XFFEEDC82, 0XFFEED8AE, 0XFFEED5D2
+            , 0XFFEED5B7, 0XFFEED2EE, 0XFFEECFA1, 0XFFEECBAD
+            , 0XFFEEC900, 0XFFEEC591, 0XFFEEB4B4, 0XFFEEB422
+            , 0XFFEEAEEE, 0XFFEEAD0E, 0XFFEEA9B8, 0XFFEEA2AD
+            , 0XFFEE9A49, 0XFFEE9A00, 0XFFEE9572, 0XFFEE82EE
+            , 0XFFEE8262, 0XFFEE7AE9, 0XFFEE799F, 0XFFEE7942
+            , 0XFFEE7621, 0XFFEE7600, 0XFFEE6AA7, 0XFFEE6A50
+            , 0XFFEE6363, 0XFFEE5C42, 0XFFEE4000, 0XFFEE3B3B
+            , 0XFFEE3A8C, 0XFFEE30A7, 0XFFEE2C2C, 0XFFEE1289
+            , 0XFFEE00EE, 0XFFEE0000, 0XFFEDEDED, 0XFFEBEBEB
+            , 0XFFEAEAEA, 0XFFE9967A, 0XFFE8E8E8, 0XFFE6E6FA
+            , 0XFFE5E5E5, 0XFFE3E3E3, 0XFFE0FFFF, 0XFFE0EEEE
+            , 0XFFE0EEE0, 0XFFE0E0E0, 0XFFE066FF, 0XFFDEDEDE
+            , 0XFFDEB887, 0XFFDDA0DD, 0XFFDCDCDC, 0XFFDC143C
+            , 0XFFDBDBDB, 0XFFDB7093, 0XFFDAA520, 0XFFDA70D6
+            , 0XFFD9D9D9, 0XFFD8BFD8, 0XFFD6D6D6, 0XFFD4D4D4
+            , 0XFFD3D3D3, 0XFFD2B48C, 0XFFD2691E, 0XFFD1EEEE
+            , 0XFFD1D1D1, 0XFFD15FEE, 0XFFD02090, 0XFFCFCFCF
+            , 0XFFCDCDC1, 0XFFCDCDB4, 0XFFCDCD00, 0XFFCDC9C9
+            , 0XFFCDC9A5, 0XFFCDC8B1, 0XFFCDC673, 0XFFCDC5BF
+            , 0XFFCDC1C5, 0XFFCDC0B0, 0XFFCDBE70, 0XFFCDBA96
+            , 0XFFCDB7B5, 0XFFCDB79E, 0XFFCDB5CD, 0XFFCDB38B
+            , 0XFFCDAF95, 0XFFCDAD00, 0XFFCDAA7D, 0XFFCD9B9B
+            , 0XFFCD9B1D, 0XFFCD96CD, 0XFFCD950C, 0XFFCD919E
+            , 0XFFCD8C95, 0XFFCD853F, 0XFFCD8500, 0XFFCD8162
+            , 0XFFCD7054, 0XFFCD69C9, 0XFFCD6889, 0XFFCD6839
+            , 0XFFCD661D, 0XFFCD6600, 0XFFCD6090, 0XFFCD5C5C
+            , 0XFFCD5B45, 0XFFCD5555, 0XFFCD4F39, 0XFFCD3700
+            , 0XFFCD3333, 0XFFCD3278, 0XFFCD2990, 0XFFCD2626
+            , 0XFFCD1076, 0XFFCD00CD, 0XFFCD0000, 0XFFCCCCCC
+            , 0XFFCAFF70, 0XFFCAE1FF, 0XFFC9C9C9, 0XFFC7C7C7
+            , 0XFFC71585, 0XFFC6E2FF, 0XFFC67171, 0XFFC5C1AA
+            , 0XFFC4C4C4, 0XFFC2C2C2, 0XFFC1FFC1, 0XFFC1CDCD
+            , 0XFFC1CDC1, 0XFFC1C1C1, 0XFFC0FF3E, 0XFFBFEFFF
+            , 0XFFBFBFBF, 0XFFBF3EFF, 0XFFBEBEBE, 0XFFBDBDBD
+            , 0XFFBDB76B, 0XFFBCEE68, 0XFFBCD2EE, 0XFFBC8F8F
+            , 0XFFBBFFFF, 0XFFBABABA, 0XFFBA55D3, 0XFFB9D3EE
+            , 0XFFB8B8B8, 0XFFB8860B, 0XFFB7B7B7, 0XFFB5B5B5
+            , 0XFFB4EEB4, 0XFFB4CDCD, 0XFFB452CD, 0XFFB3EE3A
+            , 0XFFB3B3B3, 0XFFB2DFEE, 0XFFB23AEE, 0XFFB22222
+            , 0XFFB0E2FF, 0XFFB0E0E6, 0XFFB0C4DE, 0XFFB0B0B0
+            , 0XFFB03060, 0XFFAEEEEE, 0XFFADFF2F, 0XFFADD8E6
+            , 0XFFADADAD, 0XFFABABAB, 0XFFAB82FF, 0XFFAAAAAA
+            , 0XFFA9A9A9, 0XFFA8A8A8, 0XFFA6A6A6, 0XFFA52A2A
+            , 0XFFA4D3EE, 0XFFA3A3A3, 0XFFA2CD5A, 0XFFA2B5CD
+            , 0XFFA1A1A1, 0XFFA0522D, 0XFFA020F0, 0XFF9FB6CD
+            , 0XFF9F79EE, 0XFF9E9E9E, 0XFF9C9C9C, 0XFF9BCD9B
+            , 0XFF9B30FF, 0XFF9AFF9A, 0XFF9ACD32, 0XFF9AC0CD
+            , 0XFF9A32CD, 0XFF999999, 0XFF9932CC, 0XFF98FB98
+            , 0XFF98F5FF, 0XFF97FFFF, 0XFF96CDCD, 0XFF969696
+            , 0XFF949494, 0XFF9400D3, 0XFF9370DB, 0XFF919191
+            , 0XFF912CEE, 0XFF90EE90, 0XFF8FBC8F, 0XFF8F8F8F
+            , 0XFF8EE5EE, 0XFF8E8E8E, 0XFF8E8E38, 0XFF8E388E
+            , 0XFF8DEEEE, 0XFF8DB6CD, 0XFF8C8C8C, 0XFF8B8B83
+            , 0XFF8B8B7A, 0XFF8B8B00, 0XFF8B8989, 0XFF8B8970
+            , 0XFF8B8878, 0XFF8B8682, 0XFF8B864E, 0XFF8B8386
+            , 0XFF8B8378, 0XFF8B814C, 0XFF8B7E66, 0XFF8B7D7B
+            , 0XFF8B7D6B, 0XFF8B7B8B, 0XFF8B795E, 0XFF8B7765
+            , 0XFF8B7500, 0XFF8B7355, 0XFF8B6969, 0XFF8B6914
+            , 0XFF8B668B, 0XFF8B6508, 0XFF8B636C, 0XFF8B5F65
+            , 0XFF8B5A2B, 0XFF8B5A00, 0XFF8B5742, 0XFF8B4C39
+            , 0XFF8B4789, 0XFF8B475D, 0XFF8B4726, 0XFF8B4513
+            , 0XFF8B4500, 0XFF8B3E2F, 0XFF8B3A62, 0XFF8B3A3A
+            , 0XFF8B3626, 0XFF8B2500, 0XFF8B2323, 0XFF8B2252
+            , 0XFF8B1C62, 0XFF8B1A1A, 0XFF8B0A50, 0XFF8B008B
+            , 0XFF8B0000, 0XFF8A8A8A, 0XFF8A2BE2, 0XFF8968CD
+            , 0XFF87CEFF, 0XFF87CEFA, 0XFF87CEEB, 0XFF878787
+            , 0XFF858585, 0XFF848484, 0XFF8470FF, 0XFF838B8B
+            , 0XFF838B83, 0XFF836FFF, 0XFF828282, 0XFF7FFFD4
+            , 0XFF7FFF00, 0XFF7F7F7F, 0XFF7EC0EE, 0XFF7D9EC0
+            , 0XFF7D7D7D, 0XFF7D26CD, 0XFF7CFC00, 0XFF7CCD7C
+            , 0XFF7B68EE, 0XFF7AC5CD, 0XFF7A8B8B, 0XFF7A7A7A
+            , 0XFF7A67EE, 0XFF7A378B, 0XFF79CDCD, 0XFF787878
+            , 0XFF778899, 0XFF76EEC6, 0XFF76EE00, 0XFF757575
+            , 0XFF737373, 0XFF71C671, 0XFF7171C6, 0XFF708090
+            , 0XFF707070, 0XFF6E8B3D, 0XFF6E7B8B, 0XFF6E6E6E
+            , 0XFF6CA6CD, 0XFF6C7B8B, 0XFF6B8E23, 0XFF6B6B6B
+            , 0XFF6A5ACD, 0XFF698B69, 0XFF698B22, 0XFF696969
+            , 0XFF6959CD, 0XFF68838B, 0XFF68228B, 0XFF66CDAA
+            , 0XFF66CD00, 0XFF668B8B, 0XFF666666, 0XFF6495ED
+            , 0XFF63B8FF, 0XFF636363, 0XFF616161, 0XFF607B8B
+            , 0XFF5F9EA0, 0XFF5E5E5E, 0XFF5D478B, 0XFF5CACEE
+            , 0XFF5C5C5C, 0XFF5B5B5B, 0XFF595959, 0XFF575757
+            , 0XFF556B2F, 0XFF555555, 0XFF551A8B, 0XFF54FF9F
+            , 0XFF548B54, 0XFF545454, 0XFF53868B, 0XFF528B8B
+            , 0XFF525252, 0XFF515151, 0XFF4F94CD, 0XFF4F4F4F
+            , 0XFF4EEE94, 0XFF4D4D4D, 0XFF4B0082, 0XFF4A708B
+            , 0XFF4A4A4A, 0XFF48D1CC, 0XFF4876FF, 0XFF483D8B
+            , 0XFF474747, 0XFF473C8B, 0XFF4682B4, 0XFF458B74
+            , 0XFF458B00, 0XFF454545, 0XFF43CD80, 0XFF436EEE
+            , 0XFF424242, 0XFF4169E1, 0XFF40E0D0, 0XFF404040
+            , 0XFF3D3D3D, 0XFF3CB371, 0XFF3B3B3B, 0XFF3A5FCD
+            , 0XFF388E8E, 0XFF383838, 0XFF36648B, 0XFF363636
+            , 0XFF333333, 0XFF32CD32, 0XFF303030, 0XFF2F4F4F
+            , 0XFF2E8B57, 0XFF2E2E2E, 0XFF2B2B2B, 0XFF292929
+            , 0XFF282828, 0XFF27408B, 0XFF262626, 0XFF242424
+            , 0XFF228B22, 0XFF218868, 0XFF212121, 0XFF20B2AA
+            , 0XFF1F1F1F, 0XFF1E90FF, 0XFF1E1E1E, 0XFF1C86EE
+            , 0XFF1C1C1C, 0XFF1A1A1A, 0XFF191970, 0XFF1874CD
+            , 0XFF171717, 0XFF141414, 0XFF121212, 0XFF104E8B
+            , 0XFF0F0F0F, 0XFF0D0D0D, 0XFF0A0A0A, 0XFF080808
+            , 0XFF050505, 0XFF030303, 0XFF00FFFF, 0XFF00FF7F
+            , 0XFF00FF00, 0XFF00FA9A, 0XFF00F5FF, 0XFF00EEEE
+            , 0XFF00EE76, 0XFF00EE00, 0XFF00E5EE, 0XFF00CED1
+            , 0XFF00CDCD, 0XFF00CD66, 0XFF00CD00, 0XFF00C5CD
+            , 0XFF00BFFF, 0XFF00B2EE, 0XFF009ACD, 0XFF008B8B
+            , 0XFF008B45, 0XFF008B00, 0XFF00868B, 0XFF00688B
+            , 0XFF006400, 0XFF0000FF, 0XFF0000EE, 0XFF0000CD
+            , 0XFF0000AA, 0XFF00008B, 0XFF000080, 0XFF000000};
+
+    private static int colorSize = colors.length;
 
     public MyButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mPaint = new Paint();
         TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.MyButton);
         textColor = a.getColor(R.styleable.MyButton_textColor, 0XFFFFFFFF);
         textSize = a.getDimension(R.styleable.MyButton_textSize, 36);
         degeColor = a.getColor(R.styleable.MyButton_edgeColor, 0XFFFFFFFF);
         text = a.getString(R.styleable.MyButton_text);
+        strokeWidth = a.getDimension(R.styleable.MyButton_strokeWidth, 2);
+        radius = a.getDimension(R.styleable.MyButton_radius, 10);
+        textColor = getColor();
+        degeColor = getColor();
+        mPaint = new Paint();
         mPaint.setColor(degeColor);
-        mPaint.setTextSize(textSize);
         mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(5);
+        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        mPaint.setStrokeWidth(strokeWidth);
+        mPaint.setAntiAlias(true);
+
+        mTextPaint = new Paint();
+        mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        mTextPaint.setTextSize(textSize);
+        mTextPaint.setColor(textColor);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         RectF rectF = new RectF(0, 0, getWidth(), getHeight());
-        canvas.drawRoundRect(rectF, 10, 10, mPaint);
-        mPaint.setColor(textColor);
-        canvas.drawText(text, getWidth() / 2, getHeight() / 2, mPaint);
+        canvas.drawRoundRect(rectF, radius, radius, mPaint);
+        if (TextUtils.isEmpty(text)) {
+            text = " ";
+        }
+        Rect rect = new Rect();
+        mTextPaint.getTextBounds(text, 0, text.length(), rect);
+        canvas.drawText(text, getWidth() / 2f - rect.width() / 2f, getHeight() / 2f + ((rect.height() - mTextPaint.getFontMetrics().descent) / 2f), mTextPaint);
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        invalidate();
+    }
+
+    public static int getColor() {
+        Random random = new Random();
+        return colors[random.nextInt(colorSize)];
     }
 }

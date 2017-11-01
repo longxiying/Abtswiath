@@ -38,7 +38,7 @@ public class View1 extends BaseView {
             canvas.drawPoint(i, 10, mPaint);
         }
         canvas.drawLine(5, 30, width, 30, mPaint);
-
+        mPaint.setStrokeWidth(1);
         mPaint.setTextSize(60f);
         canvas.drawText("囖龍齉龘靐蠿", 5, 90, mPaint);
 
