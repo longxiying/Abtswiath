@@ -39,6 +39,7 @@
         <activity android:name=".HttpActivity"/>
         <activity android:name=".ProgressActivity"/>
         <activity android:name=".RCLayoutActivity"/>
+        <activity android:name=".PieActivity"/>
     </application>
 
 </manifest>

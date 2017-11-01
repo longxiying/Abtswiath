@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8A2BE2"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/layout_title" />
+
+
+    <com.abtswiath.view.PieView
+        android:id="@+id/pie"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center" />
+
+
+</LinearLayout>

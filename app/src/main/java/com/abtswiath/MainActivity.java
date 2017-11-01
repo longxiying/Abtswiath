@@ -130,6 +130,13 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        this.findViewById(R.id.button10).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PieActivity.class);
+                startActivity(intent);
+            }
+        });
         this.findViewById(R.id.tv_title).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -164,7 +164,7 @@
                 app:edgeColor="@color/hotpink"
                 app:radius="8dp"
                 app:strokeWidth="2dp"
-                app:text="Button"
+                app:text="圆饼"
                 app:textColor="@color/burlywood"
                 app:textSize="13sp" />
 

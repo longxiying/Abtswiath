@@ -72,7 +72,7 @@ public class MyViewProgress extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         mPaint.setStrokeWidth(lineW);
-        mPaint.setColor(getResources().getColor(color));//设置进度条的颜色
+        mPaint.setColor(MyButton.getColor());
         canvas.translate(centerX, centerY);//将坐标移动到画布的中央
         RectF oval = new RectF(0, 0, radius - lineW, radius - lineW);
         Path path = new Path();
