@@ -1,23 +1,19 @@
 package com.abtswiath;
 
-import android.content.res.ObbInfo;
+import android.database.Observable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.abtswiath.base.BaseActivity;
-import com.abtswiath.bean.City;
-import com.abtswiath.bean.Result;
-import com.abtswiath.bean.Result1;
 import com.abtswiath.http.MyHttp;
 import com.abtswiath.utils.ThreadPoolManager;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.abtswiath.view.MyButton;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -31,15 +27,19 @@ import retrofit2.Response;
 
 public class HttpActivity extends BaseActivity implements View.OnClickListener {
 
-    private Button button;
+    private MyButton button;
     private MyHttp myHttp;
     private static final String TAG = "HttpActivity";
+    private EditText editTextIp;
+    private TextView textResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_http);
-        button = (Button) this.findViewById(R.id.button);
+        button = (MyButton) this.findViewById(R.id.button);
+        editTextIp = (EditText) this.findViewById(R.id.edit_ip);
+        textResult = (TextView) this.findViewById(R.id.text_result);
         button.setOnClickListener(this);
         myHttp = new MyHttp();
     }
@@ -51,22 +51,17 @@ public class HttpActivity extends BaseActivity implements View.OnClickListener {
                 ThreadPoolManager.executeInCachePool(new Runnable() {
                     @Override
                     public void run() {
-                        Call<ResponseBody> call = myHttp.get();
+                        Call<ResponseBody> call = myHttp.get(editTextIp.getText().toString());
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 try {
-                                    Log.e(TAG, "onResponse: "+response.body().string() );
-                                    String json = response.body().string();
-                                    button.setText(json);
-//                                    Gson gson = new Gson();
-//                                    Type jsonType = new TypeToken<Result<Result1<City>>>() {
-//                                    }.getType();
-//                                    Result<Result1<City>> result = gson.fromJson(json, jsonType);
-//                                    Log.e(TAG, "onResponse: "+result.toString());
+                                    textResult.setTextColor(MyButton.getColor());
+                                    textResult.setText(response.body().string());
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
+
                             }
 
                             @Override
@@ -74,7 +69,6 @@ public class HttpActivity extends BaseActivity implements View.OnClickListener {
 
                             }
                         });
-
                     }
                 });
                 break;

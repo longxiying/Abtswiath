@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 
 public interface MyHttpService {
 
-    @GET("jisuapi/weather1")
-    Call<ResponseBody> listRepos(@Query("appkey") String apikey);
+    @GET("service/getIpInfo.php")
+    Call<ResponseBody> getData(@Query("ip") String ip);
 
 }
