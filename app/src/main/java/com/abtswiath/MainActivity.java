@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.abtswiath.base.BaseActivity;
 import com.abtswiath.bean.User;
+import com.abtswiath.leafloading.LeafLoadingActivity;
 import com.abtswiath.view.MyButton;
 
 import java.io.FileInputStream;
@@ -119,7 +120,7 @@ public class MainActivity extends BaseActivity {
         this.findViewById(R.id.button14).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
+                Intent intent = new Intent(MainActivity.this, LeafLoadingActivity.class);
                 startActivity(intent);
             }
         });
